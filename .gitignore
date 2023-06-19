@@ -1,0 +1,12 @@
+# editor
+.idea
+# .vscode
+.DS_Store
+# except for .gitkeep
+!.gitkeep
+
+config/config*.yaml
+!config.example.yaml
+
+# go build
+tmp/*

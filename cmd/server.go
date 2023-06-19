@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
+	"github.com/topazur/leesin/pkg/config"
 )
 
 var configArg = &customFlag{
@@ -21,7 +22,7 @@ var serverCmd = &cobra.Command{
 		// cmd.Flags().GetString(configArg.name)
 		configPath := cast.ToString(configArg.value)
 
-		cmd.Println(1, configPath)
+		config.NewConfig(configPath)
 	},
 }
 
