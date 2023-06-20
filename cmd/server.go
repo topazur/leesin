@@ -4,6 +4,8 @@ import (
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/topazur/leesin/pkg/config"
+	"github.com/topazur/leesin/pkg/log"
+	"go.uber.org/zap"
 )
 
 var configArg = &customFlag{
@@ -22,7 +24,10 @@ var serverCmd = &cobra.Command{
 		// cmd.Flags().GetString(configArg.name)
 		configPath := cast.ToString(configArg.value)
 
-		config.NewConfig(configPath)
+		conf := config.NewConfig(configPath)
+		logger := log.NewLog(conf)
+
+		logger.Info("server start", zap.String("host", "http://127.0.0.1:"+conf.GetString("http.port")))
 	},
 }
 
